@@ -1,7 +1,7 @@
 
 
 
-const arrStringify = (arr) => {
+const arrStringify = arr => {
 
   let i = 0;
   let acc = "";
@@ -41,7 +41,6 @@ const arrStringify = (arr) => {
           default :
             throw new Error("type error...");
         }
-      //  acc+= (arr.length-1===i) ? ",": "";
         acc+=",";
         i++;
         return _elStringify(arr, i, acc);
