@@ -1,5 +1,5 @@
-//const arr = [          1,     'ㄹㄹ',    [   2,  3,  ['룰루',5,6],  7,  8]      ];
-const arrStringify = (arr) => {
+
+const arrStringify =arr=> {
 
   let i = 0;
   let acc = "";
