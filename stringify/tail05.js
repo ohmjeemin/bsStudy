@@ -1,5 +1,7 @@
 const arrStringify =array=> {
 
+  if(!array instanceof Array) throw new Error("error!");
+
   let stack = [{arr:array, i:0, acc:[]}];
 
   do {
@@ -44,7 +46,7 @@ const arrStringify =array=> {
 
 
 
-//const arr = [1,2,3,4,5]
-const arr = [1,'ㄹㄹ',[2,3,['룰루',5,6],7,8]];
+const arr = 1;
+//const arr = [1,'ㄹㄹ',[2,3,['룰루',5,6],7,8]];
 console.log(arrStringify(arr));
 console.log(JSON.stringify(arr)===arrStringify(arr));
