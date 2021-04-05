@@ -15,8 +15,8 @@ const arrStringify = (()=>{
     }
     return (arr, i, acc, stack)=>{
       if (arr.length === i) { // 다 돌았을 때
-        if (stack.length > 0) {  // 돌아갈곳이 있을 때
-          let {arr, i, outerAcc} = stack.pop(); // stack에서 꺼내서
+        if (stack.length > 0) {
+          let {arr, i, outerAcc} = stack.pop();
           outerAcc.push('['+finalize(acc)+']')
           return elStringify(arr, i, outerAcc, stack);
         } else {

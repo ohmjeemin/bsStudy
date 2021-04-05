@@ -13,31 +13,35 @@ const arrStringify =array=> {
     return acc;
   }
 
+  let arr = array;
+  let i = 0;
+  let acc = [];
   let stack = [];
-  let curr = {arr:array, i:0, acc:[]}; // 현재 배열
 
-  do {
-    let {arr, i, acc} = curr;
-    if(arr.length===i){ // 다 돌았을 때
-      if(stack.length>0){ // 돌아갈 데가 있을 때
-        let {arr, i, acc:outerAcc} = stack.pop();
-        outerAcc.push('['+finalize(acc)+']');
-        stack.push({arr,i:i+1,acc:outerAcc})
-      }else { // 완전 끝일 때
+  while(true) {
+    if (arr.length === i) { // 다 돌았을 때
+      if (stack.length > 0) {
+        let {sArr, sI, sAcc} = stack.pop();
+        sAcc.push('['+finalize(acc)+']');
+        i = sI;
+        arr = sArr;
+        acc = sAcc;
+      } else {
         return '['+finalize(acc)+']';
       }
-
-    }else{ // 아직 도는중일때
-      if(arr[i] instanceof Array) { // 배열일때
-        stack.push({arr:arr, i:i, acc:acc});
-        stack.push({arr:arr[i], i:0, acc:[]});
-      }else { // 배열이 아닐 때
-        acc.push(valueForType(arr[i]));
-        stack.push({arr:arr, i:i+1, acc:acc})
+    } else { // 다 안돌았을 때
+      if (arr[i] instanceof Array) { // 요소가 배열일 때
+          stack.push({sArr: arr, sI: i+1, sAcc: acc});
+          arr = arr[i];
+          i = 0;
+          acc = [];
+      } else { // 요소가 배열이 아닐 때
+          acc.push(valueForType(arr[i]));
+          i = i+1;
       }
     }
-    curr = stack.pop();
-  } while(curr)
+
+  }
 
 }
 
